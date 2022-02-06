@@ -35,7 +35,7 @@ NewAsset::register($this);
             <div class="d-flex">
                 <!-- LOGO -->
                 <div class="navbar-brand-box text-center">
-                    <a href="index.html" class="logo logo-dark">
+                    <a href="/" class="logo logo-dark">
                                 <span class="logo-sm">
                                     <img src="/assets/images/logo-sm.png" alt="logo-sm-dark" height="22">
                                 </span>
@@ -44,7 +44,7 @@ NewAsset::register($this);
                                 </span>
                     </a>
 
-                    <a href="index.html" class="logo logo-light">
+                    <a href="/" class="logo logo-light">
                                 <span class="logo-sm">
                                     <img src="/assets/images/logo-sm.png" alt="logo-sm-light" height="22">
                                 </span>

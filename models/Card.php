@@ -46,11 +46,11 @@ class Card extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'id_user' => 'Id User',
-            'content' => 'Content',
+            'content' => 'Зміст',
             'date_create' => 'Date Create',
             'date_update' => 'Date Update',
             'del' => 'Del',
-            'category' => 'Category',
+            'category' => 'Заголовок',
         ];
     }
 
@@ -65,5 +65,18 @@ class Card extends \yii\db\ActiveRecord
         return $this::find()
             ->where(['id' => $id, 'id_user' => $id_user, 'del' => 0])
             ->one();
+    }
+
+    public function deleteCardById($id, $id_user, $type){
+        if($type == 'save'){
+            $model = $this::find()
+                ->where(['id' => $id, 'id_user' => $id_user, 'del' => 0])
+                ->one();
+            $model->del = 1;
+            if(!$model->save())
+                return 0;
+            return 1;
+        }
+
     }
 }

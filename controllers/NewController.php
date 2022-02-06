@@ -42,6 +42,7 @@ class NewController extends AppController
     }
 
     public function actionIndex(){
+        Yii::$app->view->title = "Головна сторінка";
         $model = new Card();
         $data = $model->allCardByIdUser(Yii::$app->user->id);
         $this->data_user = [
@@ -57,12 +58,49 @@ class NewController extends AppController
 
     public function actionCard($id){
 
+        Yii::$app->view->title = 'Змінити записку';
+
         $model = new Card();
         $data = $model->cardById($id, Yii::$app->user->id);
+
+        if ($this->request->isPost && $data->load($this->request->post()) && $data->save()) {
+            $this->redirect('/new/index');
+        }
 
         return $this->render('card', [
             'model' => $data
         ]);
+    }
+
+    public function actionCreateCard(){
+
+        Yii::$app->view->title = 'Створити записку';
+
+        $model = new Card();
+
+        $model->id_user = Yii::$app->user->id;
+        $model->date_create = date("Y-m-d H:i:s");
+        $model->del = 0;
+
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            $this->redirect('/new/index');
+        }
+
+        return $this->render('card', [
+            'model' => $model
+        ]);
+    }
+
+    public function actionDeleteCard($id){
+
+        $model = new Card();
+
+        if (Yii::$app->user->isGuest) {
+            return $this->redirect('/new/index');
+        }
+
+        $model->deleteCardById($id, Yii::$app->user->id, 'save');
+        return $this->redirect('/new/index');
     }
 
     public function actionLogin(){

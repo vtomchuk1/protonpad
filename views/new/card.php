@@ -16,7 +16,7 @@ use yii\widgets\ActiveForm;
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                            <h4 class="mb-sm-0">Starter Page</h4>
+                            <h4 class="mb-sm-0"><?= $this->title ?></h4>
                         </div>
                     </div>
                 </div>
@@ -35,7 +35,7 @@ use yii\widgets\ActiveForm;
                                     <div class="mb-3 row">
                                         <?= $form->field($model, 'content')->widget(Widget::className(), [
                                             'settings' => [
-                                                'lang' => 'ru',
+                                                'lang' => 'uk',
                                                 'minHeight' => 200,
                                                 'plugins' => [
                                                     'clips',
@@ -59,8 +59,10 @@ use yii\widgets\ActiveForm;
                     </div>
                 </div>
                     <div class="form-group">
-                        <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
+                        <?= Html::submitButton('Зберегти', ['class' => 'btn btn-primary']) ?>
+                        <a href="/new/delete-card?id=<?= $model->id ?>" class="btn btn-warning waves-effect waves-light" role="button">Видалити</a>
                     </div>
+
                 <?php ActiveForm::end(); ?>
 
             </div><!-- new-card -->
